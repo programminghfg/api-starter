@@ -17,8 +17,8 @@
 
 <style>
 	img {
-		width: 100%;
-		height: 30vh;
+		width: 260px;
+		height: 260px;
 		object-fit: cover;
 		border-radius: 1rem;
 		margin-bottom: 1rem;
