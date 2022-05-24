@@ -7,9 +7,7 @@
 <h1>Popular Movies</h1>
 <div class="grid">
 	{#each dummydata as dummyentry}
-		<div>{dummyentry.overview}</div>
-		<!-- we came up with 'movie above' so you use that and then pull out the title -->
-		<!-- <MovieCard {dummyentry} /> -->
+		<MovieCard movie={dummyentry} />
 	{/each}
 </div>
 
