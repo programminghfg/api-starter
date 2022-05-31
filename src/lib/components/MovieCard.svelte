@@ -1,37 +1,58 @@
 <script>
+	import { fade } from 'svelte/transition';
 	export let movie;
 </script>
 
-<div class="movie-card">
-	<!-- we have access to the id for below from the for each loop in the MovieCard and passing it down as props in there so the a tag has access to the specific movie that we click on-->
-
-	<a href={'/movie/' + movie.id}
-		><img src={'https://image.tmdb.org/t/p/w500' + movie.poster_path} alt={movie.title} /></a
-	>
-
-	<div class="description">
-		<h2>{movie.title}</h2>
-		<p>{movie.release_date}</p>
+{#if movie}
+	<div class="movie-card" in:fade>
+		<a href={'/movie/' + movie.id}
+			><img src={'https://image.tmdb.org/t/p/w500' + movie.poster_path} alt={movie.title} /></a
+		>
+		<div class="description">
+			<h2>{movie.title}</h2>
+			<p>{movie.overview}</p>
+			<em>{movie.release_date}</em>
+		</div>
 	</div>
-</div>
+{:else}
+	<div class="movie-card" in:fade>
+		<div class="placeholder" />
+		<div class="description">
+			<h2>Loading</h2>
+		</div>
+	</div>
+{/if}
 
 <style>
 	img {
-		width: 260px;
-		height: 260px;
+		width: 100%;
+		aspect-ratio: 3/4;
 		object-fit: cover;
 		border-radius: 1rem;
-		margin-bottom: 1rem;
+	}
+
+	.placeholder {
+		width: 100%;
+		aspect-ratio: 3/4;
+		object-fit: cover;
+		border-radius: 1rem;
+		background: gray;
 	}
 
 	h2 {
 		font-size: 0.9rem;
 	}
 	.description {
-		height: 5vh;
+		margin-bottom: 1rem;
 	}
 	p {
 		font-size: 0.7rem;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		display: -webkit-box !important;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		white-space: normal;
 	}
 
 	.movie-card {

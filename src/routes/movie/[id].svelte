@@ -1,14 +1,13 @@
 <script>
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
+	import { fade } from 'svelte/transition';
 
 	import MovieDetailCard from '$lib/components/MovieDetailCard.svelte';
-	let movieData;
 
 	const href = $page.url;
 	const segments = new URL(href).pathname.split('/');
 	const movie_id = segments.pop() || segments.pop(); // Handle potential trailing slash
-	// console.log(movie_id);
 
 	onMount(async function () {
 		const response = await fetch(
@@ -17,11 +16,17 @@
 
 		const data = await response.json();
 		// console.log(data);
-		movieData = data;
+		movieData = await data;
 	});
+
+	let movieData;
 </script>
 
-<a href="/">Home</a>
-{#if movieData}
-	<MovieDetailCard movie={movieData} />
-{/if}
+<article in:fade>
+	<a href="/">Home</a>
+	{#await movieData}
+		<MovieDetailCard movie={null} />
+	{:then movieData}
+		<MovieDetailCard movie={movieData} />
+	{/await}
+</article>
