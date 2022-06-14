@@ -4,7 +4,10 @@
 </script>
 
 {#if movie}
-	<img src={'https://image.tmdb.org/t/p/w500' + movie.backdrop_path} />
+	<img
+		src={'https://image.tmdb.org/t/p/w500' + movie.backdrop_path}
+		alt={`Backdrop of ${movie.title}`}
+	/>
 
 	<div class="heading">
 		<h1>{movie.title}</h1>
