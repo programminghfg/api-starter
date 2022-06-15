@@ -1,6 +1,20 @@
 <script>
+	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
+	import lottie from 'lottie-web';
+	import lottieAnimation from '$lib/assets/97930-loading';
 	export let movie;
+
+	let lottieElement;
+	onMount(async function () {
+		lottie.loadAnimation({
+			container: lottieElement, // the dom element that will contain the animation
+			renderer: 'svg',
+			loop: true,
+			autoplay: true,
+			animationData: lottieAnimation
+		});
+	});
 </script>
 
 {#if movie}
@@ -16,7 +30,7 @@
 	</div>
 {:else}
 	<div class="movie-card" in:fade>
-		<div class="placeholder" />
+		<div bind:this={lottieElement} />
 		<div class="description">
 			<h2>Loading</h2>
 		</div>

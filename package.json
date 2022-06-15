@@ -24,5 +24,9 @@
     "svelte-check": "^2.2.6",
     "typescript": "~4.6.2"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@lottiefiles/svelte-lottie-player": "^0.2.0",
+    "lottie-web": "^5.9.4"
+  }
 }

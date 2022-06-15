@@ -1,6 +1,21 @@
 <script>
+	import { onMount } from 'svelte';
+	import lottie from 'lottie-web';
+	import lottieAnimation from '$lib/assets/97930-loading';
+
 	export let movie;
 	// console.log(movie);
+
+	let lottieElement;
+	onMount(async function () {
+		lottie.loadAnimation({
+			container: lottieElement, // the dom element that will contain the animation
+			renderer: 'svg',
+			loop: true,
+			autoplay: true,
+			animationData: lottieAnimation
+		});
+	});
 </script>
 
 {#if movie}
@@ -18,7 +33,7 @@
 		<a href={movie.homepage}>Movie Homepage</a>
 	</div>
 {:else}
-	<div class="placeholder" />
+	<div class="placeholder" bind:this={lottieElement} />
 	<div class="heading">
 		<h1>Loading ...</h1>
 	</div>
@@ -38,7 +53,6 @@
 		aspect-ratio: 3/2;
 		object-fit: cover;
 		width: 100%;
-		background-color: gray;
 		border-radius: 1rem;
 	}
 
