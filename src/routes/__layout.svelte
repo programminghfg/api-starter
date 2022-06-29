@@ -1,15 +1,9 @@
 <script>
 	import '../app.css';
+	import Header from '$lib/components/Header.svelte';
 </script>
 
+<Header />
 <main>
 	<slot />
 </main>
-
-<style>
-	main {
-		width: 60%;
-		margin-left: auto;
-		margin-right: auto;
-	}
-</style>

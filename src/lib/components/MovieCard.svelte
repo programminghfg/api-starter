@@ -1,6 +1,6 @@
 <script>
-	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
+	import { onMount } from 'svelte';
 	import lottie from 'lottie-web';
 	import lottieAnimation from '$lib/assets/97930-loading';
 	export let movie;
